@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lovesick - Online Song Store</title>
+
+    <style>
+        body {
+            background-color: black;
+            color: #1DB954;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            height: 80px;
+            width: 90px;
+            border-radius: 50%;
+        }
+
+        .song-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        audio {
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: black;
+            color: #1DB954;
+            border: 1px solid #1DB954;
+            padding: 10px 18px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="img/sp.jpeg" class="logo">
+
+    <h1>Welcome To Online Song Store</h1>
+    <h1>Spotify</h1>
+
+    <br>
+
+    <img src="img/sm4.jpeg" class="song-image" id="songImage">
+
+    <br>
+
+    <h2 id="songName">Lovesick</h2>
+
+    <audio id="player" controls>
+        <source src="song/lovesick.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <br>
+
+    <button onclick="previousSong()"><<</button>
+    <button onclick="nextSong()">>></button>
+
+    <script>
+
+const songs = [
+    {
+        name: "Rack And Rounds",
+        file: "song/rackNrounds.mp3",
+        image: "img/sm2.jpeg"
+    },
+    {
+        name: "Devil",
+        file: "song/Devil.mp3",
+        image: "img/sm.jpeg"
+    },
+    {
+        name: "0 TO 100",
+        file: "song/0 to 100.mp3",
+        image: "img/sm4.jpeg"
+    },
+    {
+        name: "Calaboose",
+        file: "song/Calaboose.mp3",
+        image: "img/sm.jpeg"
+    },
+    {
+        name: "Game",
+        file: "song/Game.mp3",
+        image: "img/sm3.jpeg"
+    },
+    {
+        name: "Lovesick",
+        file: "song/Lovesick.mp3",
+        image: "img/sm4.jpeg"
+    },
+    {
+        name: "295",
+        file: "song/295.mp3",
+        image: "img/sm3.jpeg"
+    },
+    {
+        name: "Dawood",
+        file: "song/Dawood.mp3",
+        image: "img/sm.jpeg"
+    },
+    {
+        name: "Me And My Gf",
+        file: "song/Me and my gf.mp3",
+        image: "img/sm2.jpeg"
+    },
+    {
+        name: "Everybody Hurts",
+        file: "song/Everybodyhurts.mp3",
+        image: "img/sm4.jpeg"
+    }
+];
+let currentSong = 5;
+
+const player = document.getElementById("player");
+const songName = document.getElementById("songName");
+
+const songImage = document.getElementById("songImage");
+
+function playSong(index) {
+    currentSong = (index + songs.length) % songs.length;
+
+    player.src = songs[currentSong].file;
+    songName.textContent = songs[currentSong].name;
+    songImage.src = songs[currentSong].image;
+
+    player.load();
+
+    player.play().catch(() => {
+        // User Play button daba sakta hai.
+    });
+}
+function nextSong() {
+    playSong(currentSong + 1);
+}
+
+function previousSong() {
+    playSong(currentSong - 1);
+}
+
+player.addEventListener("ended", function () {
+    nextSong();
+});
+
+    </script>
+
+</body>
+</html>
