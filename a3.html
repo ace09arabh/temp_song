@@ -1,6 +1,33 @@
-<body bgcolor="black">
-<img src="img/sp.jpeg"style="position:absolute;top:0px;height:100px;width:110px;border-radius:50px;margin:5px">
+<body bgcolor="black" onload="a()">
+<img src="sp.jpeg"style="position:absolute;top:0px;height:100px;width:110px;border-radius:50px;margin:5px">
 <font color=#1DB954><center><h1>Welcome To Online Song Store</h1>
 <h1>Spotify</h1></center></font>
-<img src="img/co.jpeg"style="height:465;width:1065">
+  <Script>
+    var x=1
+    function a(){
+      document.getElementById("d").src="co"+x+".jpeg"
+      x++;
+      if(x>4)
+      x=1
+    }
+    function prev(){
+      x--;
+      if(x<1)
+      x=4
+      document.getElementById("d").src="co"+x+".jpeg"
+    }
+    function next(){
+      x++;
+      if(x>4)
+      x=1
+      document.getElementById("d").src="co"+x+".jpeg"
+    }
+    setInterval(a,4000)
+  </script>
+<img id="d" src="" style="height:465;width:1065">
+<center>
+<button onclick="prev()">&lt;&lt;</button>
+<font color=#1DB954>Pages</font>
+  <button onclick="next()">&gt;&gt;</button>
+</center>
 </body>
